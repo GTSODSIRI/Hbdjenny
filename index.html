@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday My Love</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --pink: #ff9ebb;
+      --pink-light: #ffddeb;
+      --pink-soft: #fff6fb;
+      --yellow-soft: #fcecc9;
+      --blue-soft: #a3d8f4;
+      --text-main: #3b2c35;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Prompt", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe4f0, #fff6fb);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ก้อนหัวใจลอยๆ ทั้งหน้า */
+    body::before,
+    body::after {
+      content: "❤ ❤ ❤";
+      position: fixed;
+      left: 10%;
+      top: 10%;
+      font-size: 18px;
+      opacity: 0.4;
+      color: #ff9ebb;
+      animation: floatHearts 10s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+    body::after {
+      left: 80%;
+      top: 60%;
+      animation-duration: 13s;
+      opacity: 0.3;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-20px) translateX(10px);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: #ffffffcc;
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 18px 40px rgba(255, 158, 187, 0.3);
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(6px);
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 2.5rem 2.25rem;
+      }
+    }
+
+    header {
+      text-align: center;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--pink-light), var(--blue-soft));
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.75rem;
+    }
+
+    .title {
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .title span {
+      font-size: 2.4rem;
+      display: block;
+      background: linear-gradient(120deg, #ff7aa2, #ffb36b);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-top: 0.25rem;
+    }
+
+    .subtitle {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: #6d5b6a;
+    }
+
+    /* ปุ่ม */
+    .btn-row {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 0.75rem 1.6rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease, color 0.12s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(130deg, #ff9ebb, #ff7aa2);
+      color: #fff;
+      box-shadow: 0 10px 18px rgba(255, 122, 162, 0.35);
+    }
+
+    .btn-outline {
+      background: #ffffffdd;
+      color: var(--text-main);
+      border: 1px dashed #ffb3c9;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(255, 122, 162, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    /* section title */
+    .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      color: #9b7e8e;
+      margin-bottom: 1rem;
+    }
+
+    /* ปฏิทิน */
+    .calendar {
+      margin-top: 1rem;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #ffd1e1;
+      background: var(--pink-soft);
+    }
+
+    .calendar-header {
+      background: linear-gradient(120deg, #ff9ebb, #a3d8f4);
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .calendar-header strong {
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .calendar-body {
+      padding: 0.6rem 0.8rem 0.8rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.15rem;
+      text-align: center;
+      font-size: 0.75rem;
+    }
+
+    .calendar-day-name {
+      font-weight: 600;
+      color: #b18198;
+      padding: 0.3rem 0;
+    }
+
+    .calendar-cell {
+      padding: 0.38rem 0;
+      border-radius: 999px;
+    }
+
+    .calendar-cell.muted {
+      opacity: 0.25;
+    }
+
+    .calendar-cell.special {
+      position: relative;
+      background: radial-gradient(circle at top, #ff9ebb, #ff7aa2);
+      color: #fff;
+      font-weight: 700;
+      transform: scale(1.02);
+      box-shadow: 0 6px 16px rgba(255, 122, 162, 0.6);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    .calendar-cell.special::after {
+      content: "🎀";
+      position: absolute;
+      top: -0.9rem;
+      right: 0.1rem;
+      font-size: 0.95rem;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1.02);
+      }
+      50% {
+        transform: scale(1.09);
+      }
+    }
+
+    /* typewriter */
+    .typewriter {
+      margin-top: 1rem;
+      background: linear-gradient(135deg, #fff6fb, #fcecc9);
+      border-radius: 18px;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid #ffd1e1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .typewriter::before {
+      content: "✏️";
+      position: absolute;
+      top: 0.5rem;
+      right: 0.75rem;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    .typewriter-text {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #ff7aa2;
+      font-size: 0.9rem;
+      animation: typing 7s steps(60, end) 0.5s 1 both,
+        blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink-caret {
+      from,
+      to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: #ff7aa2;
+      }
+    }
+
+    /* memories gallery */
+    .memories {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .memory-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      padding-top: 70%;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      transform: translateY(0);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .memory-item:nth-child(1) {
+      background-image: linear-gradient(
+          135deg,
+          #ff9ebb66,
+          #ff7aa266
+        ),
+        url("1.jpeg");
+    }
+
+    .memory-item:nth-child(2) {
+      background-image: linear-gradient(
+          135deg,
+          #a3d8f466,
+          #fcecc966
+        ),
+        url("2.jpeg");
+    }
+
+    .memory-item:nth-child(3) {
+      background-image: linear-gradient(
+          135deg,
+          #ffd1e166,
+          #ffb36b66
+        ),
+        url("3.jpeg");
+    }
+
+    .memory-item:nth-child(4) {
+      background-image: linear-gradient(
+          135deg,
+          #c1e6ff66,
+          #ff9ebb66
+        ),
+        url("4.jpeg");
+    }
+    
+    .memory-item:nth-child(5) {
+      background-image: linear-gradient(
+          135deg,
+          #c1e6ff66,
+          #ff9ebb66
+        ),
+        url("5.jpeg");
+    }
+    
+    .memory-item:nth-child(6) {
+      background-image: linear-gradient(
+          135deg,
+          #c1e6ff66,
+          #ff9ebb66
+        ),
+        url("6.jpeg");
+    }
+
+    .memory-item span {
+      position: absolute;
+      left: 0.75rem;
+      bottom: 0.55rem;
+      font-size: 0.7rem;
+      background: #ffffffdd;
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+    }
+
+    .memory-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.12);
+    }
+
+    /* gift box with checkbox hack */
+    .gift-wrapper {
+      margin-top: 1.1rem;
+      text-align: center;
+    }
+
+    .gift-checkbox {
+      display: none;
+    }
+
+    .gift-label {
+      display: inline-block;
+      width: 140px;
+      height: 120px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ff7aa2, #ffb36b);
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 16px 26px rgba(255, 122, 162, 0.55);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .gift-label:hover {
+      transform: translateY(-4px);
+    }
+
+    .gift-label::before,
+    .gift-label::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+    }
+
+    .gift-label::before {
+      width: 18px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+
+    .gift-label::after {
+      height: 16px;
+      width: 100%;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .gift-lid {
+      position: absolute;
+      width: 110%;
+      height: 28px;
+      background: linear-gradient(120deg, #ff9ebb, #ff7aa2);
+      border-radius: 18px;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      transform-origin: bottom left;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-ribbon-bow {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.3rem;
+    }
+
+    .gift-text {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ff4c8a;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .gift-message {
+      margin-top: 1.3rem;
+      font-size: 0.95rem;
+      opacity: 0;
+      max-height: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+    }
+
+    .gift-checkbox:checked + label .gift-lid {
+      transform: translateX(-50%) rotate(-18deg);
+    }
+
+    .gift-checkbox:checked + label ~ .gift-message {
+      opacity: 1;
+      max-height: 500px;
+      transform: translateY(0);
+    }
+
+    .gift-confetti {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* love counter */
+    .love-counter {
+      margin-top: 0.9rem;
+      padding: 0.75rem 0.95rem;
+      border-radius: 999px;
+      background: #ffffffcc;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      border: 1px dashed #ffd1e1;
+    }
+
+    .love-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 80px;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #ff9ebb, #ffb36b);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ending */
+    .ending-actions {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+    }
+
+    .tiny-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #9b7e8e;
+      margin-top: 0.8rem;
+    }
+
+    /* responsive tweaks */
+    @media (max-width: 600px) {
+      .title {
+        font-size: 1.6rem;
+      }
+      .title span {
+        font-size: 2rem;
+      }
+      .memories {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        border-radius: 18px;
+      }
+    }
+    .music-btn {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        background: #ff9ebb;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        padding: 0.55rem 0.75rem;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(255, 122, 162, 0.4);
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        }
+
+        .music-btn:hover {
+        transform: scale(1.12);
+        }
+        
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- HERO -->
+    <header class="card">
+      <div class="badge">special day · 28 november</div>
+      <h1 class="title">
+        Happy Birthday
+        <span>My Love 💖</span>
+      </h1>
+      <p class="subtitle">
+        Happy Birthday จ้าคนสวย สวยที่สุด ขอให้วันนี้เป็นวันที่ดี และทุกๆวันต่อจากนี้ก็จะดีด้วยเหมือนกัน ให้มีความสุขกับตัวเอง กับคนรอบข้าง ดูแลรักษาสุขภาพด้วย มีอะไรก็อย่าใช้อารมณ์คุยกัน ใจเย็นๆลงขึ้นอีกนิดนึง แล้วทุกอย่างจะสดใสขึ้น รักที่สุดจ้า💗💗💗
+      </p>
+
+      <div class="btn-row">
+        <a href="#calendar" class="btn btn-primary">เริ่มเซอร์ไพรส์เลย 🎉</a>
+        <a href="#memories" class="btn btn-outline">ย้อนดูความทรงจำด้วยกัน 📸</a>
+      </div>
+      <audio id="bgm" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        </audio>
+
+        <button id="musicToggle" class="music-btn">🔊</button>
+    </header>
+
+    
+
+    <!-- CALENDAR -->
+    <section id="calendar" class="card">
+      <h2 class="section-title">
+        🎀 Birthday Calendar
+      </h2>
+      <div class="section-tag">
+        November · Highlight your special day · 28 November
+      </div>
+
+      <p style="font-size: 0.9rem; margin-bottom: 0.6rem;">
+        นี่คือเดือนที่พิเศษที่สุด เพราะมี “<strong>วันของเธอ</strong>” อยู่ด้วย 💗
+      </p>
+
+      <div class="calendar">
+        <div class="calendar-header">
+          <strong>November 2025</strong>
+          <span>28 · Your day ✨</span>
+        </div>
+        <div class="calendar-body">
+          <div class="calendar-grid">
+            <!-- day names -->
+            <div class="calendar-day-name">Su</div>
+            <div class="calendar-day-name">Mo</div>
+            <div class="calendar-day-name">Tu</div>
+            <div class="calendar-day-name">We</div>
+            <div class="calendar-day-name">Th</div>
+            <div class="calendar-day-name">Fr</div>
+            <div class="calendar-day-name">Sa</div>
+
+            <!-- November 2025 starts on Saturday (1 = Sa) -->
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell">1</div>
+
+            <div class="calendar-cell">2</div>
+            <div class="calendar-cell">3</div>
+            <div class="calendar-cell">4</div>
+            <div class="calendar-cell">5</div>
+            <div class="calendar-cell">6</div>
+            <div class="calendar-cell">7</div>
+            <div class="calendar-cell">8</div>
+
+            <div class="calendar-cell">9</div>
+            <div class="calendar-cell">10</div>
+            <div class="calendar-cell">11</div>
+            <div class="calendar-cell">12</div>
+            <div class="calendar-cell">13</div>
+            <div class="calendar-cell">14</div>
+            <div class="calendar-cell">15</div>
+
+            <div class="calendar-cell">16</div>
+            <div class="calendar-cell">17</div>
+            <div class="calendar-cell">18</div>
+            <div class="calendar-cell">19</div>
+            <div class="calendar-cell">20</div>
+            <div class="calendar-cell">21</div>
+            <div class="calendar-cell">22</div>
+
+            <div class="calendar-cell">23</div>
+            <div class="calendar-cell">24</div>
+            <div class="calendar-cell">25</div>
+            <div class="calendar-cell">26</div>
+            <div class="calendar-cell">27</div>
+            <div class="calendar-cell special">28</div>
+            <div class="calendar-cell">29</div>
+
+            <div class="calendar-cell">30</div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+            <div class="calendar-cell muted"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="typewriter">
+        <span class="typewriter-text">
+          On this day, the world became more beautiful… because you are here with me. 💌
+        </span>
+      </div>
+    </section>
+
+    <!-- MEMORIES -->
+    <section id="memories" class="card">
+      <h2 class="section-title">📸 Our Memories</h2>
+      <div class="section-tag">
+       
+      </div>
+
+      <p style="font-size: 0.9rem;">
+        ทุกภาพคือหนึ่งช่วงเวลาที่ดีมากๆ ที่ได้อยู่กับเธอ  
+        ยังอยากมีรูปแบบนี้เพิ่มไปเรื่อยๆ เลย💞
+      </p>
+
+      <div class="memories">
+        <div class="memory-item">
+          
+        </div>
+        <div class="memory-item">
+          
+        </div>
+        <div class="memory-item">
+          
+        </div>
+        <div class="memory-item">
+          
+        </div>
+        <div class="memory-item">
+          
+        </div>
+        <div class="memory-item">
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- GIFT -->
+    <section class="card">
+      <h2 class="section-title">🎁 A Little Birthday Gift</h2>
+      <div class="section-tag">
+        click to open · กดที่กล่องของขวัญดูสิ ว่าข้างในมีอะไรบอกเธอ
+      </div>
+
+      <div class="gift-wrapper">
+        <input type="checkbox" id="gift" class="gift-checkbox" />
+        <label for="gift" class="gift-label">
+          <div class="gift-lid"></div>
+          <div class="gift-ribbon-bow">🎀</div>
+          <div class="gift-text">tap to open</div>
+        </label>
+
+        <div class="gift-message">
+          <div class="gift-confetti">🎉🎉🎉</div>
+          <p>
+            วันนี้อยากให้เธอรู้ว่า  
+            <strong>เธอคือของขวัญที่ดีที่สุดสำหรับเราแล้ว</strong>  
+            ไม่ว่าจะได้เจอเรื่องเหนื่อยแค่ไหน แค่ได้คุยกับเธอ โลกก็เบาลงเยอะเลย 💗
+          </p>
+          <p style="margin-top: 0.6rem;">
+            ขอให้ปีนี้เต็มไปด้วยสิ่งดีๆ สุขภาพแข็งแรง สมหวังในทุกเรื่อง  
+            และขอออยู่ข้างๆ เธอแบบนี้ไปทุกๆ ปีวันเกิดนะ 💫
+          </p>
+
+          <div class="love-counter">
+            <span>เค้ารักเธอมานานแล้วประมาณ</span>
+            <span class="love-pill">∞ days</span>
+            <span>และ ยังจะเป็นแบบนี้ตลอดไป ♾️</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENDING -->
+    <section class="card">
+      <h2 class="section-title">💌 From me to you</h2>
+      <div class="section-tag">
+        
+      </div>
+
+      <p style="font-size: 0.95rem;">
+        แต่อยากให้รู้ว่า วันที่ทำหน้านี้…  
+        เรานั่งยิ้มไปด้วย แต่เวลามีแค่นี้แหละ 5555555 😊  
+        <br /><br />
+        <strong>Happy Birthday นะที่รัก อยู่ด้วยกันแบบนี้ไปนานๆ เลยนะ 💕</strong>
+      </p>
+
+      <div class="ending-actions">
+        <button class="btn btn-primary">
+          ชอบมากกก 💗
+        </button>
+        <button class="btn btn-outline">
+          ชอบมากๆๆๆๆ 🤍
+        </button>
+      </div>
+
+      <div class="tiny-note">
+        <!-- *ถ้าเปิดเว็บนี้อยู่ แสดงว่ามีคนคนนึงรักเธอมากๆ อยู่ตรงนี้แล้วนะ* -->
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+<script>
+  const audio = document.getElementById("bgm");
+  const btn = document.getElementById("musicToggle");
+
+  audio.volume = 0.7;
+
+  // AUTO PLAY
+  audio.play().catch(() => {
+    const startMusic = () => {
+      audio.play();
+      document.removeEventListener("click", startMusic);
+      document.removeEventListener("touchstart", startMusic);
+    };
+    document.addEventListener("click", startMusic, { once: true });
+    document.addEventListener("touchstart", startMusic, { once: true });
+  });
+
+  // TOGGLE BUTTON
+  btn.addEventListener("click", () => {
+    if (audio.muted) {
+      audio.muted = false;
+      btn.textContent = "🔊";
+    } else {
+      audio.muted = true;
+      btn.textContent = "🔇";
+    }
+  });
+</script>
+<script>
+function launchConfetti() {
+  const emojis = ["🎉","💖","🎀","✨","💕"];
+  for (let i = 0; i < 50; i++) {
+    const span = document.createElement("span");
+    span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    span.style.position = "fixed";
+    span.style.left = Math.random() * 100 + "vw";
+    span.style.fontSize = (20 + Math.random()*20) + "px";
+    span.style.animation = "fall 3s linear forwards";
+    span.style.top = "-50px";
+    document.body.appendChild(span);
+
+    setTimeout(() => span.remove(), 3000);
+  }
+}
+
+window.onload = () => {
+  launchConfetti();
+};
+</script>
+
+<style>
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+<script>
+document.addEventListener("click", function(e){
+  const heart = document.createElement("div");
+  heart.textContent = "💗";
+  heart.style.position = "absolute";
+  heart.style.left = e.pageX + "px";
+  heart.style.top = e.pageY + "px";
+  heart.style.fontSize = "24px";
+  heart.style.pointerEvents = "none";
+  heart.style.animation = "fly 1s ease-out forwards";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(), 1000);
+});
+
+</script>
+
+<style>
+@keyframes fly {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-60px); opacity: 0; }
+}
+</style>
